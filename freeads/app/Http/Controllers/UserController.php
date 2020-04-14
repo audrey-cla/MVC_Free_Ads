@@ -28,14 +28,17 @@ class UserController extends Controller
 
     public function store($user)
     {
-        request()->validate(['email' => ['required'], 'name' => 'required','password' => ['required']]);
+        request()->validate(['email' => ['required'], 'name' => 'required', 'password' => ['required']]);
         $user = Auth::user();
         $user->password = request('password');
         $user->name = request('name');
         $user->email = bcrypt(request('email'));
-
         $user->save();
         return view('done');
+    }
 
+    public function logout()
+    {
+        Auth::logout();
     }
 }

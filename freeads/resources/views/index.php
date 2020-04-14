@@ -7,5 +7,8 @@
 </head>
 <body>
     wewewqe
+
+
+    <a href="logout">log out</a>
 </body>
 </html>
