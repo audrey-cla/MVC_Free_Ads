@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+@section('title', 'Modifier Profil')
 
-<body>
-    <form method='POST' action='/update/{{$user->id}}/done'>
-        @csrf
-        <label for='name'>name:</label><input type='name' name='name' id='' value='{{$user->name}}'>
-        <label for='email'>Email:</label><input type='email' name='email' id='' value='{{$user->email}}'>
-        <label for='password'>password:</label><input type='password' name='password' id='' value=''>
-        <button type="submit">Changer</button>
-    </form>
-</body>
+@section('navbar')
+@parent
+<div class="ml-auto"><a href="/logout">log out</a></div>
+@stop
 
-</html>
+
+@section('content')
+<form method='POST' action='/update/{{$user->id}}/done'>
+    @csrf
+   <div class="form-group"> <label for='name'>name:</label><input class="form-control" type='name' name='name' id='' value='{{$user->name}}'></div>
+   <div class="form-group"> <label for='email'>Email:</label><input class="form-control" type='email' name='email' id='' value='{{$user->email}}'></div>
+   <div class="form-group"> <label for='password'>password:</label><input class="form-control" type='password' name='password' id='' value=''></div>
+   <div class="form-group"> <label for='ville'>Ville:</label><input class="form-control" type='ville' name='ville' id='' value='{{$user->ville}}'></div>
+   <div class="form-group"> <label for='gouts'>gouts:</label><input class="form-control" type='gouts' name='gouts' id='' value='{{$user->gouts}}'></div>
+    <button type="submit">Changer</button>
+</form>
+@stop

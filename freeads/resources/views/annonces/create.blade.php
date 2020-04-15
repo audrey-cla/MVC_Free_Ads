@@ -18,20 +18,17 @@
         @endforeach
     
     @endif
-    @if(\Session::has('success'))
-
-    <p>{{\Session::get('success')}}</p>
-
-    @endif
-
+  
 
     <form method="POST" action="{{ route('store.annonces') }}" enctype="multipart/form-data">
         @csrf
         <label for="titre">titre</label><input value="" type="texte" name="titre" id="">
         <label for="description">description</label><input value="" type="text" name="description" id="">
         <label for="prix">prix</label><input value="" type="text" name="prix" id="">
+        <label for="couleur">couleur</label><input value="" type="text" name="couleur" id="">
+        <label for="ville">ville</label><input value="" type="text" name="ville" id="">
+        <label for="gouts">gouts</label><input value="" type="text" name="gouts" id="">
         <label for="photo"></label><input value="" type="file" name="photo">
-
         <button type="submit">Submit</button>
 
     </form>

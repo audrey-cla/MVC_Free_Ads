@@ -15,11 +15,14 @@ class CreateAnnoncesTable extends Migration
     {
         Schema::create('annonces', function (Blueprint $table) {
             $table->id();
-            $table->text('id_user');
+            $table->text('user_id');
             $table->text('titre');
             $table->text('description');
             $table->text('prix');
             $table->text('photo');
+            $table->text('couleur');
+            $table->text('ville');
+            $table->text('gouts');
             $table->timestamps();
         });
     }

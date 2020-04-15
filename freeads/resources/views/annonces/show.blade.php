@@ -1,32 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+@section('title', 'Annonces')
 
-</head>
+@section('navbar')
+@parent
 
-<body>
-    <div class="container">
+<div class="ml-auto"> <a href="/logout">log out</a></div>
+@stop
+
+@section('sidebar')
+@parent
+<a href="/annonces/user/{{ Auth::user()->id }}">vos annonces crées</a>
+<br>
+<a href="/update/{{Auth::user()->id}}">Modifier votre profil</a>
+@stop
+
+
+
+@section('content')
+@if (session('status'))
+<div class="alert alert-success">
+    {{ session('status') }}
+</div>
+@endif
+@if (session('bad'))
+<div class="alert alert-danger">
+    {{ session('bad') }}
+</div>
+@endif
+<form method="get" action="{{ route('annonces.index') }}">
+    <div class="input-group">
+        <input class="form-control" type="text" placeholder="Votre recherche" name="search" aria-label="Search">
+        <button type="submit">Search</button>
+    </div>
+    <input type="radio" value="desc" name="tris" id=""><label for="desc"> descendant</label>
+    <input type="radio" value="asc" name="tris" id=""><label for="asc"> ascendant</label>
+</form>
+<div class="row">
+
+
+    @foreach($annonces as $annonce)
+
+    <div class="card">
         <div class="row">
-            @foreach($annonces as $annonce)
-            <img src="<?php echo asset("storage/" . $annonce['photo']) ?>"></img>
-            <img src=" {{ asset('storage/public/yoda.jpeg') }}" alt="">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{$annonce['titre']}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{$annonce['prix']}}</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+            <div class="col-auto">
+                <img src="<?php echo asset("storage/" . $annonce['photo']) ?>" class="img-fluid" alt="">
+            </div>
+            <div class="col">
+                <div class="card-block px-1">
+                    <h6 class="card-title">{{$annonce['titre']}}</h6>
+                    <h6 class="card-subtitle mb-1 text-muted"><small>{{$annonce['prix']}} clochettes</small></h6>
+                    <p class="card-text"><small>{{$annonce['description']}}
+                            <br>{{$annonce['ville']}}
+                            <br>{{$annonce['gouts']}}
+                        </small></p>
+
+                    @if( Auth::user()->id == $annonce['user_id'])
+                    <small> <a href="update/{{$annonce['id']}}" class="card-link">Update</a>
+                        <a href="delete/{{$annonce['id']}}" class="card-link">Delete</a></small>
+
+                    @endif
                 </div>
             </div>
-            @endforeach
         </div>
     </div>
-</body>
 
-</html>
+
+    @endforeach
+</div>
+@stop

@@ -8,5 +8,5 @@ class Annonce extends Model
 {
     //
 
-   public  $fillable = ['id_user','titre', 'description','required', 'prix', 'photo'];
+   public  $fillable = ['user_id','titre', 'description', 'prix', 'photo','couleur','ville','gouts'];
 }
