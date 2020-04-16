@@ -9,7 +9,7 @@
 
 
 @section('content')
-<form method='POST' action='/update/{{$user->id}}/done'>
+<form method='POST' action='/update/{{$user->id}}'>
     @csrf
    <div class="form-group"> <label for='name'>name:</label><input class="form-control" type='name' name='name' id='' value='{{$user->name}}'></div>
    <div class="form-group"> <label for='email'>Email:</label><input class="form-control" type='email' name='email' id='' value='{{$user->email}}'></div>

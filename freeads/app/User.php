@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'password','ville','gouts'
     ];
 
     /**
@@ -36,4 +36,15 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function conversations()
+    {
+        return $this->belongsToMany('App\Conversation');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany('App\Message'); // not as relevant, because these are all messages across conversations
+    }
 }

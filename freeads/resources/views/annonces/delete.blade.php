@@ -1,39 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+@section('title', 'Create')
 
-</head>
+@section('navbar')
+@parent
 
-<body>
+<div class="ml-auto"> <a href="/logout">log out</a></div>
+@stop
 
-
-    <div class="container">
-        <div class="row">
-
-            @foreach($annonces as $annonce)
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="<?php echo asset("storage/" . $annonce['photo']) ?>"></img>
-                <div class="card-body">
-                    <h5 class="card-title">{{$annonce['titre']}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{$annonce['prix']}} clochettes</h6>
-                    <p class="card-text">{{$annonce['description']}}</p>
-                    <a href="#" class="card-link">Card link</a>
-                </div>
-            </div>
-            @endforeach
-                    
+@section('sidebar')
+@parent
+<br><a href="/annonces/user/{{ Auth::user()->id }}">vos annonces crées</a>
+<br><a href="/update/{{Auth::user()->id}}">Modifier votre profil</a>
+@stop
 
 
-    <form method="POST" action="<?php echo "/annonces/delete/".$annonce['id'] ?>">
-        @csrf
-        <a href="/annonces/all">Annuler</butaton>  <button type="submit">Supprimer</button>
 
-    </form>
-</body>
 
-</html>
+@section('content')
+@foreach($annonces as $annonce)
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="<?php echo asset("storage/" . $annonce['photo']) ?>"></img>
+    <div class="card-body">
+        <h5 class="card-title">{{$annonce['titre']}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{$annonce['prix']}} clochettes</h6>
+        <p class="card-text">{{$annonce['description']}}</p>
+        <a href="#" class="card-link">Card link</a>
+    </div>
+</div>
+@endforeach
+
+
+
+<form method="POST" action="<?php echo "/annonces/delete/" . $annonce['id'] ?>">
+    @csrf
+    <a href="/annonces/all">Annuler</butaton> <button type="submit">Supprimer</button>
+
+</form>
+@stop

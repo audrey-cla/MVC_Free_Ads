@@ -14,20 +14,28 @@ use Illuminate\Support\Facades\Auth;
 */
 Auth::routes(['verify' => true]);
 Route::get('/', 'IndexController@showIndex');
-Route::get('/index', 'IndexController@showIndex');
 Route::get('/update/{user}', 'UserController@update');
-Route::post('/update/{user}/done', 'UserController@store');
+Route::post('/update/{user}', 'UserController@store');
 Route::get('/home', 'IndexController@showIndex');
+Route::get('/dashboard', 'IndexController@showIndex');
+
 
 Route::get('/annonces/create', 'AnnonceController@create')->name('annonces.create');
 Route::get('/annonces/user/{id}', 'AnnonceController@usercreated');
 
 Route::post('/annonces/create', 'AnnonceController@store')->name('store.annonces');
 Route::get('/annonces/update/{user}', 'AnnonceController@showupdate');
-Route::post('/annonces/update/{user}/done', 'AnnonceController@update');
+Route::post('/annonces/update/{user}', 'AnnonceController@update');
 
 Route::get('/annonces/all', 'AnnonceController@index')->name('annonces.index');
 Route::get('annonces', 'AnnonceController@index');
+
+Route::get('messages', 'MessageController@index');
+Route::get('messages/{id}', 'MessageController@showconv');
+
+
+
+
 
 
 Route::get('/logout','UserController@logout');

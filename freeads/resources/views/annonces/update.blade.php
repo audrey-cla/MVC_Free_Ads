@@ -28,10 +28,10 @@
 
 @foreach($annonces as $annonce)
 
-
-<form method="POST" action="{{$annonce['id']}}/done" enctype="multipart/form-data">
+<form method="POST" action="{{$annonce['id']}}" enctype="multipart/form-data">
     @csrf
     <input class="form-control" type="hidden" name="id" value="{{$annonce['id']}}">
+    <input class="form-control" type="hidden" name="savedphoto" value="{{$annonce['photo']}}">
     <div class="form-group"><label for="titre">titre</label><input class="form-control" value="{{$annonce['titre']}}" type="texte" name="titre" id=""></div>
     <div class="form-group"><label for="description">description</label><input class="form-control" value="{{$annonce['description']}}" type="text" name="description" id=""></div>
     <div class="form-group"><label for="prix">prix</label><input class="form-control" value="{{$annonce['prix']}}" type="text" name="prix" id=""></div>

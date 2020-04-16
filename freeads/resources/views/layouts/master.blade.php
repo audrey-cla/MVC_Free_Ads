@@ -3,12 +3,14 @@
 <head>
     <title>Laravel Crossing - @yield('title')</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ URL::asset('css/css.css') }}">
 
 </head>
 
-<body style="height: 100%;">
+<body class="h-100 w-100 overflow-hidden">
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Laravel Crossing</a>
+        <a class="navbar-brand" href="/"><img src="{{ URL::asset('img/logo.png') }}" height="100" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,22 +24,32 @@
         </div>
     </nav>
 
-    @section('sidebar')
-    @show
 
+    <div class="h-100 container-fluid p-0">
+        <div class="row h-100 m-0">
+            <div class="bg-img col-2">
+                <div class="bg-light p-3 m-3 rounded-lg">
+                    @section('sidebar')
+                    @show
 
-    <div class="container">
-        @yield('content')
+                </div>
+            </div>
+            <div class="col-8 m-0"> 
+                 @yield('content')
+            </div>
+            <div class="bg-img col-2"></div>
+
+        </div>
+    </div>
     </div>
 
+    
     <footer>
 
-<!-- Copyright -->
-<div class="footer-copyright text-center py-2 text-light" style=" width: 100%; height: 40px; position:fixed; bottom:0"><small>achetelejeuthéo</small>
-</div>
-<!-- Copyright -->
+        <div class="footer-copyright text-center py-2 text-light" style=" width: 100%; height: 40px; position:fixed; bottom:0"><small>achetelejeuthéo</small>
+        </div>
 
-</footer>
+    </footer>
 
 </body>
 

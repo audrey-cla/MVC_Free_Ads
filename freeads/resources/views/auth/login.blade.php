@@ -1,4 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.master')
+
+@section('navbar')
+
+<div class="ml-auto"> <a href="/register">register</a></div>
+@stop
 
 @section('content')
 <div class="container">

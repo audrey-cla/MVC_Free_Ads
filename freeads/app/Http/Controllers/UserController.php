@@ -14,12 +14,6 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-
-    public function register()
-    {
-        return view('registration');
-    }
-
     public function update($user)
     {
         $user = Auth::user();
@@ -38,13 +32,12 @@ class UserController extends Controller
 
 
         $user->save();
-        return redirect('index')->with('status', 'Porfil Modifié');
+        return redirect('dashboard')->with('status', 'Porfil Modifié');
     }
 
     public function logout()
     {
         Auth::logout();
         return redirect('login');
-
     }
 }

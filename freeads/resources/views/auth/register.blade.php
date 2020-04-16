@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="container">
@@ -53,6 +53,8 @@
                             </div>
                         </div>
                         
+
+        
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
@@ -60,6 +62,35 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="ville" class="col-md-4 col-form-label text-md-right">{{ __('ville') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="ville" type="ville" class="form-control @error('ville') is-invalid @enderror" name="ville" required autocomplete="new-ville">
+
+                                @error('ville')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="gouts" class="col-md-4 col-form-label text-md-right">{{ __('gouts') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="gouts" type="gouts" class="form-control @error('gouts') is-invalid @enderror" name="gouts" required autocomplete="new-gouts">
+
+                                @error('ville')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

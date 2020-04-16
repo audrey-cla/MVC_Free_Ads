@@ -16,10 +16,8 @@ class AnnonceController extends Controller
         if ($request->input('tris') == 'desc') {
             $order = 'DESC';
         }
-
         $orderByClause  = "CASE WHEN gouts like ' %" . Auth::user()->gouts . "%' THEN 0 ELSE 1 END,";
         $orderByClause .= "CASE WHEN ville like '%" . Auth::user()->ville . "%' THEN 0 ELSE 1 END";
-
         $annonces = Annonce::where('titre', 'like', '%' . $search . '%')
             ->orWhere('description', 'like', '%' . $search . '%')
             ->orWhere('prix', 'like', '%' . $search . '%')
@@ -64,6 +62,7 @@ class AnnonceController extends Controller
 
     public function update(Request $request)
     {
+
         Annonce::where('id', $request->id)
             ->update(
                 [
@@ -72,9 +71,28 @@ class AnnonceController extends Controller
                     'couleur' => $request->couleur,
                     'gouts' => $request->gouts,
                     'ville' => $request->ville,
-                    'photo' => $request->photo->store('annonces', 'public')
                 ]
             );
+
+        if ($request->photo == NULL) {
+            Annonce::where('id', $request->id)
+                ->update(
+                    [
+                        'photo' => $request->savedphoto
+                    ]
+                );
+        } else {
+            Annonce::where('id', $request->id)
+                ->update(
+                    [
+                        'photo' => $request->photo->store('annonces', 'public')
+                    ]
+                );
+        }
+
+        return redirect('annonces/all')->with('status', 'Annonce updated');
+
+
     }
 
     public function store(Request $request)
