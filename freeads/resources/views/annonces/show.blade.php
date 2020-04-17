@@ -49,7 +49,7 @@
                 <div class="card-block px-1">
                     <h6 class="card-title">{{$annonce['titre']}}</h6>
                     <h6 class="card-subtitle mb-1 text-muted"><small>{{$annonce['prix']}} clochettes</small></h6>
-                    <p class="card-text"><small>{{$annonce['description']}}
+                    <p class="card-text"><small>{{$annonce['description']}} 
                             <br>{{$annonce['ville']}}
                             <br>{{$annonce['gouts']}}
                         </small></p>

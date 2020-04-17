@@ -8,9 +8,8 @@ class Message extends Model
 {
     //
 
-   public  $fillable = ['content','media','sender_id','receiver_id'];
-
-
+   public  $fillable = ['content','conversation_id','user_id'];
+   
    public function user()
    {
        return $this->belongsTo('App\User');

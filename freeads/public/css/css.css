@@ -5,3 +5,9 @@
 .color-custom {
     background-color: #cccccc;
 }
+
+.foo {
+    position: fixed;
+    width: 65%;
+    bottom: 0;
+}
